@@ -1,0 +1,10 @@
+gunicorn
+flask
+lxml
+pymongo
+whitenoise
+file-downloader
+tqdm
+requests
+wget
+ffmpeg-python
