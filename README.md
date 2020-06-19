@@ -1,3 +1,2 @@
 # Vidly-Backend
-Vidly's bakcend implementaion
-Backend for vidly app
+Vidly's Backend for vidly app
