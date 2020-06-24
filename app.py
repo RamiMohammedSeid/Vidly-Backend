@@ -38,6 +38,7 @@ database = client["vidly-db"]
 series_collection = database["vidly-series"]
 user_collection = database["vidly-users"]
 episode_collection = database["vidly-episodes"]
+movie_collection = database["vidly-movies"]
 def file_link(fileid):
     opener = urllib.request.build_opener()
     splitted_file_id = fileid.split("@")
@@ -79,8 +80,9 @@ def monitorv():
 @app.route('/series', methods=['GET'])
 def movies():
     handle = series_collection.find().limit(20)
-    
-    return (dumps(handle))
+    handle2 = movie_collection.find().limit(20)
+
+    return (dumps({"series":handle,"movie":handle2}))
 
 @app.route('/episodes', methods=['GET'])
 def episodes():
@@ -123,16 +125,6 @@ def register():
 def index(): 
     return "Hie it's Vidly"
 
-
-@app.route('/getvideo', methods=['GET'])
-def getvideo(): 
-    opener = urllib.request.build_opener()
-    opener.addheaders = [('Authorization', 'Bearer JYHF7Zl1uYf0p8mFSZfD3ia7ZydBK2Hf6cpLAy7uLjGp0pmrP9rCk')]
-    urllib.request.install_opener(opener)
-    response = urllib.request.urlopen(f"https://api.pcloud.com/getvideolink?path={ request.args['path'] }")
-
-    json_data = json.loads (str(response.read().decode("utf-8") ))   
-    return "http://"+json_data["hosts"] [0]+json_data["path"]
 
 
 
